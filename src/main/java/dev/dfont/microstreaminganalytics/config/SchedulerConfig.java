@@ -40,7 +40,7 @@ public class SchedulerConfig implements SchedulingConfigurer {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 500)
     public void performTask() {
         String date = dateFormat.format(new Date());
         logger.info("sending message: " + date);
