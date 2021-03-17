@@ -1,5 +1,6 @@
 package dev.dfont.microstreaminganalytics.config;
 
+import dev.dfont.microstreaminganalytics.model.Message;
 import dev.dfont.microstreaminganalytics.repository.MessageRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
