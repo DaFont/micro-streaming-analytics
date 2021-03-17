@@ -16,7 +16,7 @@ public class RabbitMqConfig {
     public static final String EXCHANGE_NAME = "exchange_name";
     public static final String ROUTING_KEY = "routing_key";
 
-    private static final String QUEUE_NAME = "queue_name";
+    private static final String QUEUE_NAME = "temperature";
     private static final boolean IS_DURABLE_QUEUE = false;
 
     @Bean
