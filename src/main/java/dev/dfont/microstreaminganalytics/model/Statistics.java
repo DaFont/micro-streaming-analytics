@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.Instant;
+
 /**
  * The type Statistics, using lambok library to generate getter,setter and constructor automatically.
  */
@@ -19,6 +21,7 @@ public class Statistics {
     @Id
     public String id;
 
+    private Instant timestamp;
     private double max;
     private double min;
     private double mean;
