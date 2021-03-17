@@ -1,0 +1,40 @@
+version: "3.6"
+services:
+
+  mongo:
+    image: 'mongo'
+    container_name: mongo
+    ports:
+      - 27017:27017
+    networks:
+      - shared-net
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:15672" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - shared-net
+
+  microstreaminganalysis:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: microstreaminganalysis
+    links:
+      - mongo
+      - rabbitmq
+    depends_on:
+      - mongo
+      - rabbitmq
+    networks:
+      - shared-net
+
+
+networks:
+  shared-net:
+    driver: bridge
