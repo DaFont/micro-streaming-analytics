@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.dfont.microstreaminganalytics.model.Datapoint;
 import dev.dfont.microstreaminganalytics.model.Datastream;
 import dev.dfont.microstreaminganalytics.model.Device;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,7 @@ import java.util.Random;
  */
 public class MessageEncoder {
 
+    private static final Logger logger = LoggerFactory.getLogger(MessageEncoder.class);
 
     /**
      * Create message as json string to use as a byte payload by the rabbitmq client.
@@ -35,10 +38,13 @@ public class MessageEncoder {
 
 
         //Create random values for temperature between 10º and 50ª
-        //TODO improve  number of decimals
+
         Random r = new Random();
-        Double random = 10 + r.nextDouble() * (50 - 10);
-        datapoint.setValue(random);
+        Double randomValue = 10 + r.nextDouble() * (50 - 10);
+
+        randomValue = Math.floor(randomValue * 100) / 100;
+
+        datapoint.setValue(randomValue);
 
         List<Datapoint> datapointList = new ArrayList<>();
         datapointList.add(datapoint);
@@ -66,7 +72,9 @@ public class MessageEncoder {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        System.out.println(jsonString);
+
+        logger.info("Creating json message");
+        logger.debug(jsonString);
 
         return jsonString;
     }
@@ -79,6 +87,7 @@ public class MessageEncoder {
 
     public static Device createPojoFromMessage(String message) {
 
+        logger.info("Creating Pojo from message");
         ObjectMapper mapper = new ObjectMapper();
         Device device = null;
         try {
