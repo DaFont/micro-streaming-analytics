@@ -1,5 +1,6 @@
 package dev.dfont.microstreaminganalytics.repository.config;
 
+import dev.dfont.microstreaminganalytics.repository.utils.MessageBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -43,7 +44,8 @@ public class SchedulerConfig implements SchedulingConfigurer {
     public void performTask() {
         String date = dateFormat.format(new Date());
         logger.info("sending message: " + date);
-        rabbitTemplate.convertAndSend(RabbitMqConfig.EXCHANGE_NAME, RabbitMqConfig.ROUTING_KEY, dateFormat.format(new Date()));
+        String message = MessageBuilder.createMessageAsJsonString();
+        rabbitTemplate.convertAndSend(RabbitMqConfig.EXCHANGE_NAME, RabbitMqConfig.ROUTING_KEY, message);
     }
 
 
