@@ -1,4 +1,4 @@
-package dev.dfont.microstreaminganalytics.repository.config;
+package dev.dfont.microstreaminganalytics.config;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;

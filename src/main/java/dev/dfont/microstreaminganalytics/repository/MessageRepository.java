@@ -1,10 +1,10 @@
 package dev.dfont.microstreaminganalytics.repository;
 
-import dev.dfont.microstreaminganalytics.repository.model.Message;
+import dev.dfont.microstreaminganalytics.model.Message;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface MessageRepository extends MongoRepository<Message, String> {
 
-    public Message findByText(String text);
+    Message findByText(String text);
 
 }

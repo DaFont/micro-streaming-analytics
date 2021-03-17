@@ -1,4 +1,4 @@
-package dev.dfont.microstreaminganalytics.repository.model;
+package dev.dfont.microstreaminganalytics.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

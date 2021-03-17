@@ -1,10 +1,10 @@
-package dev.dfont.microstreaminganalytics.repository.utils;
+package dev.dfont.microstreaminganalytics.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.dfont.microstreaminganalytics.repository.model.Datapoint;
-import dev.dfont.microstreaminganalytics.repository.model.Datastream;
-import dev.dfont.microstreaminganalytics.repository.model.Device;
+import dev.dfont.microstreaminganalytics.model.Datapoint;
+import dev.dfont.microstreaminganalytics.model.Datastream;
+import dev.dfont.microstreaminganalytics.model.Device;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.Random;
  * 	   <li> http://blog.amplia.es/south/data_collection/data_collection.html
  * </ul>
  */
-public class MessageBuilder {
+public class MessageEncoder {
 
 
     /**
@@ -71,6 +71,23 @@ public class MessageBuilder {
         return jsonString;
     }
 
+    /**
+     * Create device from string.
+     *
+     * @return the string
+     */
+
+    public static Device createPojoFromMessage(String message) {
+
+        ObjectMapper mapper = new ObjectMapper();
+        Device device = null;
+        try {
+            device = mapper.readValue(message, Device.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return device;
+    }
 }
 
 
