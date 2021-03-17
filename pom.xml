@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>dev.dfont</groupId>
 	<artifactId>micro-streaming-analytics</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>Micro streaming analytics</name>
 	<description>POC of micro streaming analytics from RabbitMQ messages</description>
 	<properties>
